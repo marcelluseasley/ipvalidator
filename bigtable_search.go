@@ -1,0 +1,57 @@
+package main
+
+import (
+	"fmt"
+	"context"
+	"log"
+	"net"
+	"strings"
+
+	"cloud.google.com/go/bigtable"
+)
+
+// project - contains the project in Google Cloud
+// instance - the BigTable instance
+// tableIPCountry - table keyed by IP network (from geolite2 database) to country geocode ID
+// tableGeonameCountry - table keyed by Geoname ID (from geolite2 database) to country name
+const (
+	project             = "industrious-eye-236701"
+	instance            = "ip-country-bt"
+	tableIPCountry      = "IP-Country"
+	tableGeonameCountry = "Geoname-Country"
+)
+
+// getFirstOctet - gets the first octet from the IP address
+// This will narrow down having to search the entire IP-Country
+// to just the IP addresses that start with the first octet.
+func getFirstOctet(ip string) string {
+	return strings.Split(ip, ".")[0]
+}
+
+func getGeoIDFromIP(ip string) string {
+	var geoID string
+	ctx := context.Background()
+	rowRange := bigtable.PrefixRange(getFirstOctet(ip))
+
+	client, err := bigtable.NewClient(ctx, project, instance)
+	if err != nil {
+		log.Fatalf("could not create data operations client: %v", err)
+	}
+
+	tblIPCountry := client.Open(tableIPCountry)
+
+	var netIP net.IP
+	netIP.UnmarshalText([]byte(ip))
+	tblIPCountry.ReadRows(ctx, rowRange, func(row bigtable.Row) bool {
+		for _, j := range row["ipGeoID"] {
+			_, ipv4Net, _ := net.ParseCIDR(j.Row)
+			if ipv4Net.Contains(netIP) {
+				geoID = string(j.Value)
+				return false
+			}
+		}
+
+		return true
+	}, bigtable.RowFilter(bigtable.ColumnFilter("geoname_id")))
+	return geoID
+}
