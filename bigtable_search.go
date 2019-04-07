@@ -61,3 +61,22 @@ func getGeoIDFromIP(ip string) string {
 	}, bigtable.RowFilter(bigtable.ColumnFilter("geoname_id")))
 	return geoID
 }
+
+// lookupCountryFromGeoID - takes the geocode ID and uses it as the 
+// key in the BigTable table tableGeonameCountry, which returns the
+// associated country as a string
+func lookupCountryFromGeoID(geoID string) string {
+	ctx := context.Background()
+	client, err := bigtable.NewClient(ctx, project, instance)
+	if err != nil {
+		log.Fatalf("could not create data operations client: %v", err)
+	}
+
+	tblGeonameCountry := client.Open(tableGeonameCountry)
+	row, err := tblGeonameCountry.ReadRow(ctx, geoID)
+	if err != nil {
+		log.Fatalf("could not read row from table: %v", err)
+	}
+	country := row["geoIDCountry"]
+	return string(country[0].Value)
+}
