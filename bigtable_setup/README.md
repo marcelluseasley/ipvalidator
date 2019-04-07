@@ -50,3 +50,27 @@ $ cbt lookup Geoname-Country 6252001
 ```
 
 If this country is in the list of approved countries, the API endpoint returns `true`. 
+
+---
+
+## Getting data into BigTable
+
+The necessary CSV files are hosted as ZIP files at https://dev.maxmind.com/geoip/geoip2/geolite2/ as https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country-CSV.zip.
+
+Extracting the zip file returns a few zip files. The two I needed are : 
+* GeoLite2-Country-Blocks-IPv4.csv
+```
+network,geoname_id,registered_country_geoname_id,represented_country_geoname_id,is_anonymous_proxy,is_satellite_provider
+1.0.0.0/24,2077456,2077456,,0,0
+1.0.1.0/24,1814991,1814991,,0,0
+1.0.2.0/23,1814991,1814991,,0,0
+```
+* GeoLite2-Country-Locations-en.csv
+```
+geoname_id,locale_code,continent_code,continent_name,country_iso_code,country_name,is_in_european_union
+49518,en,AF,Africa,RW,Rwanda,0
+51537,en,AF,Africa,SO,Somalia,0
+69543,en,AS,Asia,YE,Yemen,0
+99237,en,AS,Asia,IQ,Iraq,0
+```
+Using the BigTable Go API, I added the records to their relative tables, using Apply and ApplyBulk.
