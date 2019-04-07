@@ -42,3 +42,6 @@ The endpoint response will be JSON and either contain a `valid_status` of `true`
 }
 ```
 Note: see `bigtable_search.go` for details on the IP/Country lookup logic.
+
+## Running API locally
+Since during development, I used `gcloud auth application-default login` for the BigTable access, it was necessary to create a service account and generate a JSON key. This JSON key file `ipgeo-readrights.json` is called from the code, where the tables are accessed. This allows for just enough rights to read the tables, in order for the table lookups to occur.
