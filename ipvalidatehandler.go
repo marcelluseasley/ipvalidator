@@ -14,6 +14,7 @@ type IPCountries struct {
 }
 
 func ipValidateHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("Received connection from: %v", r.RemoteAddr)
 	
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
