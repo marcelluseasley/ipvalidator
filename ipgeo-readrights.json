@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "industrious-eye-236701",
+  "private_key_id": "0ad5540f4cfd91d271efe4b5972222caf588d4e6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCV6lhDDdInJ7uh\nJHpBkgQPF6dzBGcj4FcZ3JDZvzYdU061ekh5lEUxprAuHMtJgErCWexPBcPI46/E\ncGNFl9IsCZp3G2B1eZGn3cehocw8mEjtYC8hKdtYhe7l8zXYj6843LHJ9vEPvsl2\nqBwPBm8HTpMmvNWJ93+shA6MdROmjCvVKMZY8uShk7rs0bO1/EwnnQN8EM0E7sAB\nuZy8d1JA0QtiFdD90M//qnDqCiWTfU7lbNLzktoHbmpto8oDMwbNRpDegC5+/f1C\n2E6lPMFqnJyzvnGEgKQuqVdgbu2D5fNkYHcEYyimD/KbZ2IJNgicIksbub+o5EQM\n5q2rYls5AgMBAAECggEACYvY73opk/M4hDgjrdm7tu9RayZQYA041q2ALtF5g3AK\n3s0I4O8TYehEp0cPneBUwmACB30tPLVc+7QRajzS9hltc+CzKX/iic86V11LeV9U\nI4OAtMqqzE4JCq0MVHw/0u3gx2TZcGB8iTkGwmEtQEidX7XeHjE7uNNW7tREulHx\nQkedj9OQFXwDl+fwpIvcdfQCH1WNsUh+xi8M9SdJlRHnJ5PzmTY/LgnnE6tSw9Hq\nprlZgKJthwS4/B+/SkCEyiBuYOnmFz03Jaxs/U4EMs8lwTnRSyHQnV2QyJW32naj\nKgTvJYZXOm/V75IzEVuWF9doGhsHq1M24p7Ol1h7NQKBgQDJFBGL/KVmWnteJdbY\n7huHQLlsDIEnjxqrsphcognZF71dH4J+z0x6ds5xxCwDKaFPw69H7SHe3MAoXNyq\n/HYeefttDpybksR1nPL3kzTclGqtIbEraCeQ3WEmqq+OzsFVAMilstybxkVeaTKD\nR795zLhRNt650/yCx7DlaKx09QKBgQC+3NNUtgJiWS90C+mBwemClgpussRajhfr\n16TyAD/xN7VGd/+wJjblJuOwKg99LVk+37w11f/6LFZC31Yd/7Xlgo9mKgP+U3Yw\nl/taL050HTl2NgR4TsvFmaAGQFY3ZBA6yff2dtaaUmwaX94+xPsboK+Ws5LZ42Ov\njWYrQkrCtQKBgC12zijarQMhfjdhUtylqa/BIKufgCxTnPIpZW28bYGaboR5tWW6\ntU4TQsZSVqk4ZnLEigM3SKs9Om1l4bb/ci2d4w1bemlqm+UD4aO8sv0UybHvpkFs\nQVXt2COIAD3H3cq8bKGaeWr3P4QDQRqRxGdjtGEYiO93UOa5A/Q64JNpAoGAXKbK\nGAc65Q8yT/0wX4MInhHEArTZSLRNvHk0Yx3n7GsEnq7F+nayk07rnKruVe/bsP/f\nV6sI1iMLxO6x2WI2pLFad1fSFHXjm/dLVx470XYWXOIgDV8C4GuRGTfGIqF6l29P\n5d8Okl+MhskfFA1/cIvycQ+/K/KMg736aOmHbTkCgYBpi3I+QM4k4z48auVsH3jV\nGdHB1GYMRcTGYQNkKqAYx0RawuBcLAD4HSjEmr+oJDXnaKXaA6l3W6h6xQ4K6iQd\nHER7b5p/WfnIFgr1nF+jDliEgHtdjhF9QdE8w79QmHK6vtnPLbfzN+ZPfRRx7glJ\nJOb6D2J3KKC980SDcld3ow==\n-----END PRIVATE KEY-----\n",
+  "client_email": "ipgeo-readrights@industrious-eye-236701.iam.gserviceaccount.com",
+  "client_id": "103446977461022163545",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ipgeo-readrights%40industrious-eye-236701.iam.gserviceaccount.com"
+}

@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"cloud.google.com/go/bigtable"
+	"google.golang.org/api/option"
 )
 
 // project - contains the project in Google Cloud
@@ -38,7 +39,7 @@ func getGeoIDFromIP(ip string) string {
 	ctx := context.Background()
 	rowRange := bigtable.PrefixRange(getFirstOctet(ip))
 
-	client, err := bigtable.NewClient(ctx, project, instance)
+	client, err := bigtable.NewClient(ctx, project, instance, option.WithCredentialsFile("ipgeo-readrights.json"))
 	if err != nil {
 		log.Fatalf("could not create data operations client: %v", err)
 	}
@@ -66,7 +67,7 @@ func getGeoIDFromIP(ip string) string {
 // associated country as a string
 func lookupCountryFromGeoID(geoID string) string {
 	ctx := context.Background()
-	client, err := bigtable.NewClient(ctx, project, instance)
+	client, err := bigtable.NewClient(ctx, project, instance, option.WithCredentialsFile("ipgeo-readrights.json"))
 	if err != nil {
 		log.Fatalf("could not create data operations client: %v", err)
 	}
