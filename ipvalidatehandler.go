@@ -14,6 +14,9 @@ type IPCountries struct {
 }
 
 func ipValidateHandler(w http.ResponseWriter, r *http.Request) {
+	
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 	decoder := json.NewDecoder(r.Body)
 	var ipcountries IPCountries
 	err := decoder.Decode(&ipcountries)
@@ -27,7 +30,9 @@ func ipValidateHandler(w http.ResponseWriter, r *http.Request) {
 	country := lookupCountryFromGeoID(geocode)
 
 	if contains(ipcountries.Countries, country){
-		fmt.Fprintf(w, "GOOD IP")
+		fmt.Fprintf(w, `{"valid_status": "true"	}`)
+	} else {
+		fmt.Fprintf(w, `{"valid_status": "false"}`)
 	}
 
 
