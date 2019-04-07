@@ -28,6 +28,12 @@ func getFirstOctet(ip string) string {
 	return strings.Split(ip, ".")[0]
 }
 
+// getGeoIDFromIP - takes an IP address in form "aaa.bbb.ccc.ddd"
+// takes the first octect "aaa" and uses it to filter down the number
+// of rows needed to search in the BigTable table
+// For each of the rows that begin with the octet of our IP address,
+// we parse the CIDR with net.ParseCIDR, and check to see if the IP address
+// is contained within that CIDR range. If so, then we return the geocode ID
 func getGeoIDFromIP(ip string) string {
 	var geoID string
 	ctx := context.Background()
