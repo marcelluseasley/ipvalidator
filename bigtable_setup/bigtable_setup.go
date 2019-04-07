@@ -7,7 +7,6 @@ import (
 	"io"
 	"log"
 	"strings"
-	//"io/ioutil"
 	"archive/zip"
 	"encoding/csv"
 	"net/http"
@@ -170,47 +169,45 @@ func createBigTableTablesFromCSVRecords(records [][]string, tableName string, co
 		muts := make([]*bigtable.Mutation, 100000)
 		rowKeys := make([]string, 100000)
 		x := 0
-		for i, record := range records { 
+		for i, record := range records {
 			if i == 0 {
 				continue
 			}
 			muts[x] = bigtable.NewMutation()
 			muts[x].Set(columnFamily, column1, bigtable.Now(), []byte(record[1]))
-			
 
-			rowKeys[x] = fmt.Sprintf("%s",record[0])
-			if i % 100000 == 0{
+			rowKeys[x] = fmt.Sprintf("%s", record[0])
+			if i%100000 == 0 {
 				rowErrs, err := tbl.ApplyBulk(ctx, rowKeys, muts)
 				if err != nil {
 					log.Fatalf("Could not apply bulk row mutation: %v", err)
 				}
 				if rowErrs != nil {
-						for _, rowErr := range rowErrs {
-								log.Printf("Error writing row: %v", rowErr)
-						}
-						log.Fatalf("Could not write some rows")
+					for _, rowErr := range rowErrs {
+						log.Printf("Error writing row: %v", rowErr)
+					}
+					log.Fatalf("Could not write some rows")
 				}
 				x = -1
 			}
 			x++
-			
+
 		}
 		rowErrs, err := tbl.ApplyBulk(ctx, rowKeys, muts)
 		if err != nil {
 			log.Fatalf("Could not apply bulk row mutation: %v", err)
 		}
 		if rowErrs != nil {
-				for _, rowErr := range rowErrs {
-						log.Printf("Error writing row: %v", rowErr)
-				}
-				log.Fatalf("Could not write some rows")
+			for _, rowErr := range rowErrs {
+				log.Printf("Error writing row: %v", rowErr)
+			}
+			log.Fatalf("Could not write some rows")
 		}
 
 	case tableGeonameCountry:
 		log.Println("inside case tableGeonameCountry")
 		tbl := client.Open(tableName)
 
-		//rowKeys := make([]string, 99999)
 
 		for i, record := range records {
 			if i == 0 {
@@ -218,7 +215,6 @@ func createBigTableTablesFromCSVRecords(records [][]string, tableName string, co
 			}
 			mut := bigtable.NewMutation()
 			mut.Set(columnFamily, column1, bigtable.Now(), []byte(record[5]))
-			
 
 			rowKey := fmt.Sprintf("%s", record[0])
 
@@ -255,6 +251,5 @@ func main() {
 	}
 
 	createBigTableTablesFromCSVRecords(tableIPRecords, tableIPCountry, columnFamily1, columnGeonameID)
-
 
 }
