@@ -21,5 +21,23 @@ func ipValidateHandler(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Could not process incoming JSON: %v", err)
 		fmt.Fprint(w, "invalid JSON request")
 	}
-	fmt.Printf(string(ipcountries.Countries[0]))
+	
+
+	geocode := getGeoIDFromIP(ipcountries.IP)
+	country := lookupCountryFromGeoID(geocode)
+
+	if contains(ipcountries.Countries, country){
+		fmt.Fprintf(w, "GOOD IP")
+	}
+
+
+}
+
+func contains(forest []string, tree string) bool {
+	for _, t := range forest {
+		if tree == t {
+			return true
+		}
+	}
+	return false
 }
