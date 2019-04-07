@@ -45,3 +45,13 @@ Note: see `bigtable_search.go` for details on the IP/Country lookup logic.
 
 ## Running API locally
 Since during development, I used `gcloud auth application-default login` for the BigTable access, it was necessary to create a service account and generate a JSON key. This JSON key file `ipgeo-readrights.json` is called from the code, where the tables are accessed. This allows for just enough rights to read the tables, in order for the table lookups to occur.
+
+### Docker
+To run the API in a Docker container, you can use the included `Dockerfile`.
+```
+docker build -t ipvalidator .
+```
+Once the image has been built, you can run the container with:
+```
+docker run -d -p 8080:8080 ipvalidator
+```
