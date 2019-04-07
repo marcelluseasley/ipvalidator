@@ -1,8 +1,8 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
-	"fmt"	
 )
 
 func healthcheckHandler(w http.ResponseWriter, r *http.Request) {

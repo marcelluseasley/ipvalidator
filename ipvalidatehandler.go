@@ -1,19 +1,17 @@
 package main
 
 import (
-	"net/http"
-	"fmt"	
-	"log"
 	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
 )
 
 // IPCountries - holds IP address and list of approved countries.
 type IPCountries struct {
-	IP string `json:"ip"`
+	IP        string   `json:"ip"`
 	Countries []string `json:"approved_countries"`
 }
-
-
 
 func ipValidateHandler(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
@@ -25,4 +23,3 @@ func ipValidateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Printf(string(ipcountries.Countries[0]))
 }
-

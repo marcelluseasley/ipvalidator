@@ -1,7 +1,6 @@
 package main
 
 import (
-	
 	"context"
 	"log"
 	"net"
@@ -62,7 +61,7 @@ func getGeoIDFromIP(ip string) string {
 	return geoID
 }
 
-// lookupCountryFromGeoID - takes the geocode ID and uses it as the 
+// lookupCountryFromGeoID - takes the geocode ID and uses it as the
 // key in the BigTable table tableGeonameCountry, which returns the
 // associated country as a string
 func lookupCountryFromGeoID(geoID string) string {
