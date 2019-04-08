@@ -252,4 +252,11 @@ func main() {
 
 	createBigTableTablesFromCSVRecords(tableIPRecords, tableIPCountry, columnFamily1, columnGeonameID)
 
+	tableGeonameCountryRecords, err := getCSVRecords(dir, geoliteCountryLocationsEnglishFile)
+	if err != nil {
+		log.Fatalf("Error retreiving records from CSV file: %s", err)
+	}
+
+	createBigTableTablesFromCSVRecords(tableGeonameCountryRecords, tableGeonameCountry, columnFamily2, columnCountry)
+
 }
