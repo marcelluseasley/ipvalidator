@@ -15,7 +15,7 @@ type IPCountries struct {
 
 func ipValidateHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Received connection from: %v", r.RemoteAddr)
-	
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	decoder := json.NewDecoder(r.Body)
@@ -25,17 +25,15 @@ func ipValidateHandler(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Could not process incoming JSON: %v", err)
 		fmt.Fprint(w, "invalid JSON request")
 	}
-	
 
 	geocode := getGeoIDFromIP(ipcountries.IP)
 	country := lookupCountryFromGeoID(geocode)
 
-	if contains(ipcountries.Countries, country){
-		fmt.Fprintf(w, `{"valid_status": "true"	}`)
+	if contains(ipcountries.Countries, country) {
+		fmt.Fprintf(w, `{"valid_status": "true"}`)
 	} else {
 		fmt.Fprintf(w, `{"valid_status": "false"}`)
 	}
-
 
 }
 
